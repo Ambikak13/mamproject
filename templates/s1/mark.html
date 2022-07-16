@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Marks</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+</body>
+    <form action="/some/student_mark_save" method="post">
+        {% csrf_token %}
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Student Marks</h3>
+            </div>
+            <div class="form-group">
+                <label>Enter Rno</label>
+                <input type="text" name="rno" class="form-control" placeholder="Enter Rno" required>
+            </div>
+            <div class="form-group">
+                <label>Select Subject</label>
+                   <select class="form-control" name="subject" multiple>
+                       {% for sub in subject %}
+                           <option value="{{ sub.subject_id }}">{{ sub.subject }}</option>
+                       {% endfor %}
+                   </select>
+           </div>
+           <div class="form-group">
+            <label>Select Catergory</label>
+            <select class="form-control" name="category" >
+                <option value="First Internal">First Internal</option>
+                <option value="Second Internal">Second Internal</option>
+                <option value="First Sem">First Sem</option>
+                <option value="Second Sem">Second Sem</option>
+                <option value="Third Sem">Third Sem</option>
+                <option value="Fourth Sem">Fourth Sem</option>
+                <option value="Fifth Sem">Fifth Sem</option>
+                <option value="Sixth Sem">Sixth Sem</option>
+            </select>
+            </div>
+            <div class="form-group">
+                <label>Enter Marks</label>
+                <input type="text" name="mark" class="form-control" placeholder="Enter Mark" required>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Save Mark</button>
+            </div>
+            <div>
+                {% if msg %}
+                    {% for msg in messages %}
+                    <div class="alert" style="margin-top:10px">{{ msg }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </form>
+</html>

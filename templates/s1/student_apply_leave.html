@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Leave Application</title>
+</head>
+{% load static %}
+
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Apply For Leave</h3>
+                </div>
+                <!-- /.card-header -->
+
+                            {% comment %} Display Messages {% endcomment %}
+                            {% if messages %}
+                            <div class="form-group">
+                            <div class="col-12">
+                                {% for message in messages %}
+                                {% if message.tags == "error" %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% elif message.tags == "success" %}
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            </div>
+                            {% endif %}
+                        
+                <form method="POST" action="/some/student_apply_leave/student_apply_leave_save/">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>RollNo</label>
+                                <input type="text" id="rno" name="rno"  class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Leave Date </label>
+                            <input type="date" name="leave_date" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Leave Reason </label>
+                            <textarea name="leave_reason" class="form-control" rows="6" placeholder="Leave Reason"></textarea>
+                        </div>
+
+
+                    </div>
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Apply for Leave</button>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-primary" onclick="location.href='student_view_leave';" id="view" >View Leave</button>
+                        </div>
+                </form>
+
+                </div>
+                <!-- /.card -->
+
+
+
+            </div>
+        </div>
+
+        
+  </section>
+
+</html>

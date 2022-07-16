@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Add Course</title>
+</head>
+<body>
+    <form action="/some/add_course_save" method="post">
+    {% csrf_token %}
+        <div class="form-group">
+            <label>Course Id</label>
+            <input type="text" class="form-control" name="course_id" placeholder="courseid">
+        </div>
+        <div class="form-group">
+            <label>Course name</label>
+            <input type="text" class="form-control" name="Name" placeholder="course name">
+        </div>
+        <div class="form-group">
+            <label>Department</label>
+            <input type="text" class="form-control" name="dept" placeholder="Department name">
+        </div> 
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Add course</button>
+        </div>
+        <div>
+            {% if msg %}
+                {% for msg in messages %}
+                <div class="alert" style="margin-top:10px">{{ msg }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+    </form>
+</body>
+</html>

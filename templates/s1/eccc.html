@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+    function checkBoxLimit() {
+          var checkBoxGroup = document.forms['form_name']['check[]'];			
+                var limit = 3;
+                for (var i = 0; i < checkBoxGroup.length; i++) {
+                    checkBoxGroup[i].onclick = function() {
+                        var checkedcount = 0;
+                        for (var i = 0; i < checkBoxGroup.length; i++) {
+                            checkedcount += (checkBoxGroup[i].checked) ? 1 : 0;
+                        }
+                        if (checkedcount > limit) {
+                            console.log("You can select maximum of " + limit + " checkboxes.");
+                            alert("You can select maximum of " + limit + " checkboxes.");						
+                            this.checked = false;
+                        }
+                    }
+                }
+            }
+    </script>
+</head>
+<body>
+    <div class="card-header">
+        <h3 class="card-title">Select ECCC (select any 3)</h3>
+    </div>
+	<form method="post" action="/some/eccc_save/"name="form_name" id="form_name">
+        {% csrf_token %}
+        <label class="form-check-label">NCC</label>
+        <input type="checkbox" name="check[]" value="CheckBox 1"/><br>
+        <label class="form-check-label">NSS</label>
+        <input type="checkbox" name="check[]" value="CheckBox 2"/><br>
+        <label class="form-check-label">Red Cross</label>
+        <input type="checkbox" name="check[]" value="CheckBox 3"/><br>
+        <label class="form-check-label">Computer Association</label>
+        <input type="checkbox" name="check[]" value="CheckBox 4"/><br>
+        <label class="form-check-label">farming Association</label>
+        <input type="checkbox" name="check[]" value="CheckBox 5"/><br>
+        <label class="form-check-label">Other </label>
+        <input type="checkbox" name="check[]" value="CheckBox 6"/><br>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    <script type="text/javascript">checkBoxLimit()</script>
+    
+</body>
+
+</html>

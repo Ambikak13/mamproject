@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Add Academic advisor</title>
+</head>
+<body>
+    <form action="/some/advisor_save" method="post">
+        {% csrf_token %}
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Assign academic advisor</h3>
+            </div>
+            <div class="form-group">
+               <label>Staff</label>
+                <select class="form-control" name="staffs">
+                {% for stff in staffs %}
+                    <option value="{{ stff.staff_name }}">{{ stff.staff_name}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Student list</label>
+                 <select class="form-control" name="student_list">
+                 {% for s in student_list %}
+                     <option value="{{ s.rno }}">{{ s.rno }}</option>
+                 {% endfor %}
+                 </select>
+             </div>
+             
+            <div class="form-group">
+                <label>From Rno</label>
+                <input type="number" name="from" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>To Rno</label>
+                <input type="number" name="to" class="form-control">
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Assign Academic advisor</button>
+            </div>
+            {% for msg in messages %} 
+                {{ msg }}
+            {% endfor %}
+        </div>
+    </form>
+</body>
+</html>

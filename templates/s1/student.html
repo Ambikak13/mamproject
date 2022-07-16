@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PARENT</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'S2/student.css' %}">
+    <script type="text/javascript">
+        function rn(){
+            data=prompt("Enter your roll number");
+            document.getElementById("rno").value=data;
+            document.getElementById("rno_form").submit();       
+        }
+    </script>
+</head>
+<body>
+   <div class="menu-bar">
+    <ul>
+        <li class="active"><a href="#">HOME</a></li>
+        <li><a href="/some/student_view/">View</a>
+        </li>
+        <li><a href="/some/student_apply_leave/">Leave Application</a>
+        </li>
+        <li><a href="/some/select_eccc/">ECCC Select</select></a>
+        </li>
+        <li><a href="/some/ids">Back</a></li>
+        <form method="post" action="/some/student_view/" id="rno_form">
+            {% csrf_token %}
+            <input type="text" style="visibility: hidden ;" id="rno" name="rno">
+        </form>
+    </ul>
+    </div>  
+    
+</body>
+</html>
+</body>
+</html>
